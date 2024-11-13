@@ -51,4 +51,22 @@ export const useStore = create((set, get) => ({
         }),
       });
     },
+    deleteNode: (id) => {
+      console.log('Deleting node with id:', id);
+      console.log('Current nodes:', get().nodes);
+      set((state) => {
+        const newNodes = state.nodes.filter((node) => node.id !== id);
+        const newEdges = state.edges.filter(
+          (edge) => edge.source !== id && edge.target !== id
+        );
+        console.log('New nodes:', newNodes);
+        console.log('New edges:', newEdges);
+        
+        return {
+          nodes: newNodes,
+          edges: newEdges,
+        };
+      });
+    },    
+  
   }));

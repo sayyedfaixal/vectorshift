@@ -1,14 +1,20 @@
+// import { ThemeProvider } from './ThemeToggle/ThemeContext';
+// import { ThemeToggle } from './ThemeToggle/ThemeToggle';
 import { PipelineToolbar } from './PipelineToolbar';
 import { PipelineUI } from './PipelineUI';
 import { SubmitButton } from './SubmitButton';
 
 function App() {
   return (
-    <div>
+    <>
+    {/* // <ThemeProvider> */}
       <PipelineToolbar />
       <PipelineUI />
       <SubmitButton />
-    </div>
+      {/* // <ThemeToggle /> */}
+    {/* // </ThemeProvider> */}
+    </>
+    
   );
 }
 

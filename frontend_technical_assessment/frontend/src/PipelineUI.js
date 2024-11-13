@@ -10,6 +10,12 @@ import { InputNode } from './nodes/inputNode';
 import { LLMNode } from './nodes/llmNode';
 import { OutputNode } from './nodes/outputNode';
 import { TextNode } from './nodes/textNode';
+import {AggregatorNode} from "./NewNodes/aggregatorNode"
+import { ImageProcessingNode } from '../src/NewNodes/imageProcessingNode';
+import { MathNode } from '../src/NewNodes/mathNode';
+import { ConditionalNode } from '../src/NewNodes/conditionalNode';
+import { DelayNode } from '../src/NewNodes/delayNode';
+// import { useTheme } from './ThemeToggle/ThemeContext';
 
 import 'reactflow/dist/style.css';
 
@@ -20,6 +26,11 @@ const nodeTypes = {
   llm: LLMNode,
   customOutput: OutputNode,
   text: TextNode,
+  aggregator: AggregatorNode,
+  imageProcessing: ImageProcessingNode,
+  math: MathNode,
+  conditional: ConditionalNode,
+  delay: DelayNode,
 };
 
 const selector = (state) => ({
@@ -33,6 +44,7 @@ const selector = (state) => ({
 });
 
 export const PipelineUI = () => {
+    // const { isDark } = useTheme();
     const reactFlowWrapper = useRef(null);
     const [reactFlowInstance, setReactFlowInstance] = useState(null);
     const {
@@ -88,6 +100,25 @@ export const PipelineUI = () => {
         event.dataTransfer.dropEffect = 'move';
     }, []);
 
+    // Define theme-based styles
+    const flowStyles = {
+        background: '#f8f8f8',  // Using light theme color as default
+    };
+
+    const controlsStyles = {
+        button: {
+            backgroundColor: '#333',
+            color: '#fff',
+            border: '1px solid #444',
+        }
+    };
+
+    const minimapStyles = {
+        backgroundColor: '#ccc',
+        maskColor: 'rgba(0, 0, 0, 0.4)',
+        borderColor: '#444',
+    };
+
     return (
         <>
         <div ref={reactFlowWrapper} style={{width: '100wv', height: '70vh'}}>
@@ -103,11 +134,25 @@ export const PipelineUI = () => {
                 nodeTypes={nodeTypes}
                 proOptions={proOptions}
                 snapGrid={[gridSize, gridSize]}
+                style={flowStyles}
                 connectionLineType='smoothstep'
+                defaultEdgeOptions={{
+                  style: {
+                      stroke: '#666',
+                      strokeWidth: 2,
+                  }
+              }}
             >
-                <Background color="#aaa" gap={gridSize} />
-                <Controls />
-                <MiniMap />
+                <Background 
+        color="#333"
+        gap={gridSize}
+        size={1}
+    />
+    <Controls style={controlsStyles} />
+    <MiniMap 
+        style={minimapStyles}
+        nodeColor="#666"
+    />
             </ReactFlow>
         </div>
         </>

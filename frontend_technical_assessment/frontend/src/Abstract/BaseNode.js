@@ -1,24 +1,105 @@
-// BaseNode.js
 import { Handle, Position } from 'reactflow';
+import { useStore } from '../store';
 
-export const BaseNode = ({ id, label, description, handles }) => {
+export const BaseNode = ({ 
+  title, 
+  width = 200, 
+  height = 80, 
+  children, 
+  inputs = [], 
+  outputs = [],
+  id,
+  data
+}) => {
+  const deleteNode = useStore(state => state.deleteNode);
+  
+  const nodeId = id || data?.id;
+
+  const handleDelete = () => {
+    console.log('Deleting node:', nodeId);
+    deleteNode(nodeId);
+  };
+
   return (
-    <div style={{ width: 200, height: 80, border: '1px solid black', padding: '8px' }}>
-      {handles.map((handle, index) => (
+    <div style={{
+      width,
+      height,
+      background: 'linear-gradient(45deg, #4a1a6c, #8030b0)',
+      borderRadius: '8px',
+      padding: '12px',
+      color: 'white',
+      fontFamily: 'Arial, sans-serif',
+      boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+      border: 'none',
+      position: 'relative'
+    }}>
+      <button
+        onClick={handleDelete}
+        style={{
+          position: 'absolute',
+          top: '-10px',
+          right: '-10px',
+          width: '20px',
+          height: '20px',
+          borderRadius: '50%',
+          background: '#ff4444',
+          color: 'white',
+          border: 'none',
+          cursor: 'pointer',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          fontSize: '12px',
+          padding: 0,
+          zIndex: 10
+        }}
+      >
+        ×
+      </button>
+
+      {inputs.map((input, index) => (
         <Handle
-          key={index}
-          type={handle.type}
-          position={handle.position}
-          id={`${id}-${handle.id}`}
-          style={handle.style}
+          key={input.id}
+          type="target"
+          position={Position.Left}
+          id={input.id}
+          style={{
+            width: '12px',
+            height: '12px',
+            background: 'linear-gradient(45deg, #8030b0, #4a1a6c)',
+            border: 'none',
+            opacity: 0.6,
+            transition: 'all 0.3s ease'
+          }}
         />
       ))}
-      <div>
-        <span>{label}</span>
+      
+      <div style={{
+        marginBottom: '8px',
+        fontSize: '14px',
+        fontWeight: '500'
+      }}>
+        {title}
       </div>
-      <div>
-        <span>{description}</span>
-      </div>
+      
+      {children}
+      
+      {outputs.map((output, index) => (
+        <Handle
+          key={output.id}
+          type="source"
+          position={Position.Right}
+          id={output.id}
+          style={{
+            width: '12px',
+            height: '12px',
+            background: 'linear-gradient(45deg, #8030b0, #4a1a6c)',
+            border: 'none',
+            opacity: 0.6,
+            transition: 'all 0.3s ease'
+          }}
+        />
+      ))}
     </div>
   );
 };

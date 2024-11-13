@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { BaseNode } from '../Abstract/BaseNode';
 import { NodeField } from '../Abstract/NodeField';
 
+
 export const ImageProcessingNode = ({ id }) => {
   const [resolution, setResolution] = useState('medium');
   const [filter, setFilter] = useState('none');
