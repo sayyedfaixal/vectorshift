@@ -16,10 +16,10 @@ export const MathNode = ({ id }) => {
     >
       <NodeField label="Operation">
         <select value={operation} onChange={(e) => setOperation(e.target.value)}>
-          <option value="add">Add</option>
-          <option value="subtract">Subtract</option>
-          <option value="multiply">Multiply</option>
-          <option value="divide">Divide</option>
+          <option style={{padding:'10px'}} value="add">Add</option>
+          <option style={{padding:'10px'}} value="subtract">Subtract</option>
+          <option style={{padding:'10px'}} value="multiply">Multiply</option>
+          <option style={{padding:'10px'}} value="divide">Divide</option>
         </select>
       </NodeField>
     </BaseNode>
