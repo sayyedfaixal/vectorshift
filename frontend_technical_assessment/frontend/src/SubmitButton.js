@@ -27,7 +27,6 @@ export const SubmitButton = () => {
       const data = await response.json();
       setResponseData(data);
       setModalOpen(true); // Open modal on success
-      console.log(`====================DATA==========================`, data);
 
       // Display the alert with the response data
       console.log(`

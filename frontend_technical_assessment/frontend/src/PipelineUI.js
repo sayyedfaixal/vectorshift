@@ -1,8 +1,4 @@
-// ui.js
-// Displays the drag-and-drop UI
-// --------------------------------------------------
-
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback, useEffect } from "react";
 import ReactFlow, { Controls, Background, MiniMap } from "reactflow";
 import { useStore } from "./store";
 import { shallow } from "zustand/shallow";
@@ -15,7 +11,6 @@ import { ImageProcessingNode } from "./NewNodes/imageProcessingNode";
 import { MathNode } from "./NewNodes/mathNode";
 import { ConditionalNode } from "./NewNodes/conditionalNode";
 import { DelayNode } from "./NewNodes/delayNode";
-// import { useTheme } from './ThemeToggle/ThemeContext';
 
 import "reactflow/dist/style.css";
 
@@ -33,6 +28,7 @@ const nodeTypes = {
   delay: DelayNode,
 };
 
+// Updated selector to include deleteNode
 const selector = (state) => ({
   nodes: state.nodes,
   edges: state.edges,
@@ -41,12 +37,14 @@ const selector = (state) => ({
   onNodesChange: state.onNodesChange,
   onEdgesChange: state.onEdgesChange,
   onConnect: state.onConnect,
+  deleteNode: state.deleteNode, // Added deleteNode to selector
 });
 
 export const PipelineUI = () => {
-  // const { isDark } = useTheme();
   const reactFlowWrapper = useRef(null);
   const [reactFlowInstance, setReactFlowInstance] = useState(null);
+
+  // Destructure deleteNode from the store
   const {
     nodes,
     edges,
@@ -55,6 +53,7 @@ export const PipelineUI = () => {
     onNodesChange,
     onEdgesChange,
     onConnect,
+    deleteNode, // Include deleteNode in destructuring
   } = useStore(selector, shallow);
 
   const getInitNodeData = (nodeID, type) => {
@@ -73,7 +72,6 @@ export const PipelineUI = () => {
         );
         const type = appData?.nodeType;
 
-        // check if the dropped element is valid
         if (typeof type === "undefined" || !type) {
           return;
         }
@@ -94,7 +92,7 @@ export const PipelineUI = () => {
         addNode(newNode);
       }
     },
-    [reactFlowInstance]
+    [reactFlowInstance, addNode, getNodeID]
   );
 
   const onDragOver = useCallback((event) => {
@@ -102,9 +100,13 @@ export const PipelineUI = () => {
     event.dataTransfer.dropEffect = "move";
   }, []);
 
-  // Define theme-based styles
+  // Add debugging useEffect
+  useEffect(() => {
+    // console.log("Nodes updated:", nodes);
+  }, [nodes]);
+
   const flowStyles = {
-    background: "#f8f8f8", // Using light theme color as default
+    background: "#f8f8f8",
   };
 
   const controlsStyles = {

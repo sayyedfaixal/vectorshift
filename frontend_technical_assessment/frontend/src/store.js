@@ -60,11 +60,17 @@ export const useStore = create((set, get) => ({
     });
   },
   deleteNode: (id) => {
+    // console.log("Before delete - Nodes:", get().nodes);
+    // console.log("Before delete - Edges:", get().edges);
+
     set((state) => {
       const newNodes = state.nodes.filter((node) => node.id !== id);
       const newEdges = state.edges.filter(
         (edge) => edge.source !== id && edge.target !== id
       );
+
+      // console.log("After delete - New nodes:", newNodes);
+      // console.log("After delete - New edges:", newEdges);
 
       return {
         nodes: newNodes,
