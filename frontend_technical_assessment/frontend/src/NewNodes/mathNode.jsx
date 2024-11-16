@@ -7,6 +7,7 @@ export const MathNode = ({ id }) => {
 
   return (
     <BaseNode
+      id={id}
       title="Math"
       inputs={[{ id: `${id}-input1` }, { id: `${id}-input2` }]}
       outputs={[{ id: `${id}-result` }]}

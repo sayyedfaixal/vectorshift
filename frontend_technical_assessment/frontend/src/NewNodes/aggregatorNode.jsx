@@ -7,6 +7,7 @@ export const AggregatorNode = ({ id }) => {
 
   return (
     <BaseNode
+      id={id}
       title="Aggregator"
       inputs={[
         { id: `${id}-input1` },

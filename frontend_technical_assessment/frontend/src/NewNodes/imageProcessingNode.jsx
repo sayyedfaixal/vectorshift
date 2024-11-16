@@ -20,6 +20,7 @@ export const ImageProcessingNode = ({ id }) => {
 
   return (
     <BaseNode
+      id={id}
       title="Image Processing"
       inputs={[{ id: `${id}-image` }]}
       outputs={[{ id: `${id}-processed` }]}

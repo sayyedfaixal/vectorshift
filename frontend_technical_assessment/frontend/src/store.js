@@ -60,17 +60,25 @@ export const useStore = create((set, get) => ({
     });
   },
   deleteNode: (id) => {
-    // console.log("Before delete - Nodes:", get().nodes);
-    // console.log("Before delete - Edges:", get().edges);
-
     set((state) => {
+      console.group("Node Deletion");
+      console.log("Attempting to delete node:", id);
+      console.log("Current nodes:", state.nodes);
+      console.log("Current edges:", state.edges);
+
+      const nodeToDelete = state.nodes.find((node) => node.id === id);
+      console.log("Node to delete:", nodeToDelete);
+
       const newNodes = state.nodes.filter((node) => node.id !== id);
+      console.log("STORE DATA ===> ", state);
+
       const newEdges = state.edges.filter(
         (edge) => edge.source !== id && edge.target !== id
       );
 
-      // console.log("After delete - New nodes:", newNodes);
-      // console.log("After delete - New edges:", newEdges);
+      console.log("Remaining nodes:", newNodes);
+      console.log("Remaining edges:", newEdges);
+      console.groupEnd();
 
       return {
         nodes: newNodes,

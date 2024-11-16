@@ -102,7 +102,7 @@ export const PipelineUI = () => {
 
   // Add debugging useEffect
   useEffect(() => {
-    // console.log("Nodes updated:", nodes);
+    console.log("Nodes updated:", nodes);
   }, [nodes]);
 
   const flowStyles = {

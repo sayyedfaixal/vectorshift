@@ -40,8 +40,8 @@ export const TextNode = ({ id, data }) => {
 
   return (
     <BaseNode
-      title="Text"
       id={id}
+      title="Text"
       width={nodeWidth}
       height={nodeHeight}
       outputs={[{ id: "output" }]}
