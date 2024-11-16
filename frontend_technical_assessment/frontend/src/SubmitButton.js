@@ -1,10 +1,14 @@
 import { useStore } from "./store";
-
+import { useState } from "react";
+import Modal from "./Modal";
 export const SubmitButton = () => {
   const { nodes, edges } = useStore((state) => ({
     nodes: state.nodes,
     edges: state.edges,
   }));
+
+  const [modalOpen, setModalOpen] = useState(false);
+  const [responseData, setResponseData] = useState(null);
 
   const handleSubmit = async () => {
     try {
@@ -21,6 +25,8 @@ export const SubmitButton = () => {
       }
 
       const data = await response.json();
+      setResponseData(data);
+      setModalOpen(true); // Open modal on success
       console.log(`====================DATA==========================`, data);
 
       // Display the alert with the response data
@@ -67,6 +73,11 @@ export const SubmitButton = () => {
       >
         Submit
       </button>
+      <Modal
+        isOpen={modalOpen}
+        onClose={() => setModalOpen(false)}
+        data={responseData}
+      />
     </div>
   );
 };
