@@ -1,5 +1,3 @@
-// TextNode.js
-
 import { useState, useEffect, useRef } from "react";
 import { BaseNode } from "../Abstract/BaseNode";
 import { Handle, Position } from "reactflow";
@@ -20,15 +18,16 @@ export const TextNode = ({ id, data }) => {
 
   // Adjust variables and node size when text changes
   useEffect(() => {
+    // Extract variables from text
     const newVars = extractVariables(text);
     setVariables(newVars);
 
-    // Dynamically adjust width and height based on text content
+    // Dynamically adjust the width and height based on text content
     const lines = text.split("\n");
     const maxLineLength = Math.max(...lines.map((line) => line.length));
     const calculatedWidth = Math.max(
       200,
-      Math.min(maxLineLength * 7 + 40, 400)
+      Math.min(maxLineLength * 8 + 40, 400)
     );
     const calculatedHeight = Math.min(
       Math.max(100, lines.length * 20 + 60),
@@ -65,17 +64,18 @@ export const TextNode = ({ id, data }) => {
         />
       ))}
 
+      {/* Text area for input */}
       <textarea
         ref={textAreaRef}
         value={text}
         onChange={(e) => setText(e.target.value)}
         style={{
           width: "calc(100% - 16px)", // Account for padding
-          height: `${nodeHeight - 40}px`, // Adjust textarea height within node
+          height: `${nodeHeight - 50}px`, // Adjust textarea height within node
           backgroundColor: "rgba(255, 255, 255, 0.05)",
-          border: "none",
+          border: "1px solid white",
           borderRadius: "4px",
-          padding: "8px",
+          padding: "5px",
           color: "#a7a7a7",
           resize: "none",
           fontFamily: "monospace",
