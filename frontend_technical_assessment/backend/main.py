@@ -46,13 +46,12 @@ def is_directed_acyclic_graph(nodes, edges):
         rec_stack[node] = False
         return False
 
-    # Detect cycles for each node
     visited = {node['id']: False for node in nodes}
     rec_stack = {node['id']: False for node in nodes}
 
     for node in nodes:
         if not visited[node['id']]:
             if has_cycle(node['id'], visited, rec_stack):
-                return False  # There's a cycle
+                return False 
 
-    return True  # No cycles, it's a DAG
+    return True
