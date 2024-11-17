@@ -98,24 +98,3 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 ```
 This is a complete `README.md` file formatted with emojis to make it engaging and visually appealing.
 ```
-
-TODO:
-Now what I want is, whatever node I select to the react flow canvas, I want to perform its associated action
-
-and get the output
-
-Eg:
-
-I am having a node MathNode
-
-It has Add, Subtract, Multiply, Divide select option
-
-I also have a textNode that can take the input
-
-Also I have the output Node
-
-The flow I want is
-
-|TextNode
-
-I want whatever operation is performed
