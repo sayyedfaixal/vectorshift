@@ -1,5 +1,3 @@
-// toolbar.js
-
 import { useState } from "react";
 import { DraggableNode } from "./draggableNode";
 

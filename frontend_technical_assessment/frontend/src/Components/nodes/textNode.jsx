@@ -46,7 +46,6 @@ export const TextNode = ({ id, data }) => {
       height={nodeHeight}
       outputs={[{ id: "output" }]}
     >
-      {/* Variable handles */}
       {variables.map((variable, index) => (
         <Handle
           key={variable}
@@ -64,14 +63,13 @@ export const TextNode = ({ id, data }) => {
         />
       ))}
 
-      {/* Text area for input */}
       <textarea
         ref={textAreaRef}
         value={text}
         onChange={(e) => setText(e.target.value)}
         style={{
-          width: "calc(100% - 16px)", // Account for padding
-          height: `${nodeHeight - 50}px`, // Adjust textarea height within node
+          width: "calc(100% - 16px)",
+          height: `${nodeHeight - 50}px`,
           backgroundColor: "rgba(255, 255, 255, 0.05)",
           border: "1px solid white",
           borderRadius: "4px",

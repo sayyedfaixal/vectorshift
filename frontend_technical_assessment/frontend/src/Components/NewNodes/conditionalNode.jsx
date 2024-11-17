@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { BaseNode } from "../Abstract/BaseNode";
-import { NodeField } from "../Abstract/NodeField";
+import { BaseNode } from "../../Components/Abstract/BaseNode";
+import { NodeField } from "../../Components/Abstract/NodeField";
 
 export const ConditionalNode = ({ id }) => {
   const [condition, setCondition] = useState("equals");

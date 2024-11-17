@@ -1,5 +1,3 @@
-// outputNode.js
-
 import { useState } from "react";
 import { BaseNode } from "../Abstract/BaseNode";
 import { Handle, Position } from "reactflow";
@@ -10,19 +8,16 @@ export const OutputNode = ({ id, data }) => {
   );
   const [outputType, setOutputType] = useState(data?.outputType || "Text");
 
-  // Handles changes to output name
   const handleOutputNameChange = (e) => {
     setOutputName(e.target.value);
   };
 
-  // Handles changes to output type
   const handleOutputTypeChange = (e) => {
     setOutputType(e.target.value);
   };
 
   return (
     <BaseNode id={id} title="Output" width={200} height={120} outputs={[]}>
-      {/* Target handle for connecting inputs */}
       <Handle
         type="target"
         position={Position.Left}
@@ -37,7 +32,6 @@ export const OutputNode = ({ id, data }) => {
         }}
       />
 
-      {/* Output name input */}
       <label
         style={{
           display: "block",
@@ -65,7 +59,6 @@ export const OutputNode = ({ id, data }) => {
         />
       </label>
 
-      {/* Output type dropdown */}
       <label
         style={{
           display: "block",

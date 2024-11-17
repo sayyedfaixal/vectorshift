@@ -1,7 +1,7 @@
 // inputNode.js
 import { useState } from "react";
 import { Handle, Position } from "reactflow";
-import { BaseNode } from "../Abstract/BaseNode";
+import { BaseNode } from "../../Components/Abstract/BaseNode";
 
 export const InputNode = ({ id, data, setValue }) => {
   const [inputValue, setInputValue] = useState(0);
@@ -9,7 +9,7 @@ export const InputNode = ({ id, data, setValue }) => {
   const handleInputChange = (e) => {
     const value = parseFloat(e.target.value);
     setInputValue(value);
-    if (setValue) setValue(id, value); // Pass value to Math Node
+    if (setValue) setValue(id, value);
   };
 
   return (
@@ -27,8 +27,6 @@ export const InputNode = ({ id, data, setValue }) => {
           opacity: 0.6,
         }}
       />
-
-      {/* Input Field */}
       <div style={{ marginTop: "10px" }}>
         <label
           style={{

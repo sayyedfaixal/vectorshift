@@ -1,5 +1,5 @@
 import { Handle, Position } from "reactflow";
-import { useStore } from "../store";
+import { useStore } from "../../store";
 import { shallow } from "zustand/shallow";
 
 export const BaseNode = ({
@@ -16,7 +16,7 @@ export const BaseNode = ({
   const handleDelete = (event) => {
     event.preventDefault();
     event.stopPropagation();
-    console.log(`Deleting node with ID:`, id);
+    // console.log(`Deleting node with ID:`, id);
 
     deleteNode(id);
   };

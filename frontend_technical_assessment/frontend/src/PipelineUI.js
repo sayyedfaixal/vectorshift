@@ -2,15 +2,16 @@ import { useState, useRef, useCallback, useEffect } from "react";
 import ReactFlow, { Controls, Background, MiniMap } from "reactflow";
 import { useStore } from "./store";
 import { shallow } from "zustand/shallow";
-import { InputNode } from "./nodes/inputNode";
+
 // import { LLMNode } from "./nodes/llmNode";
-import { OutputNode } from "./nodes/outputNode";
-import { TextNode } from "./nodes/textNode";
-import { AggregatorNode } from "./NewNodes/aggregatorNode";
-import { ImageProcessingNode } from "./NewNodes/imageProcessingNode";
-import { MathNode } from "./NewNodes/mathNode";
-import { ConditionalNode } from "./NewNodes/conditionalNode";
-import { DelayNode } from "./NewNodes/delayNode";
+import { InputNode } from "./Components/nodes/inputNode";
+import { OutputNode } from "./Components/nodes/outputNode";
+import { TextNode } from "./Components/nodes/textNode";
+import { AggregatorNode } from "./Components/NewNodes/aggregatorNode";
+import { ImageProcessingNode } from "./Components/NewNodes/imageProcessingNode";
+import { MathNode } from "./Components/NewNodes/mathNode";
+import { ConditionalNode } from "./Components/NewNodes/conditionalNode";
+import { DelayNode } from "./Components/NewNodes/delayNode";
 
 import "reactflow/dist/style.css";
 
@@ -28,7 +29,6 @@ const nodeTypes = {
   delay: DelayNode,
 };
 
-// Updated selector to include deleteNode
 const selector = (state) => ({
   nodes: state.nodes,
   edges: state.edges,
@@ -37,14 +37,13 @@ const selector = (state) => ({
   onNodesChange: state.onNodesChange,
   onEdgesChange: state.onEdgesChange,
   onConnect: state.onConnect,
-  deleteNode: state.deleteNode, // Added deleteNode to selector
+  deleteNode: state.deleteNode,
 });
 
 export const PipelineUI = () => {
   const reactFlowWrapper = useRef(null);
   const [reactFlowInstance, setReactFlowInstance] = useState(null);
 
-  // Destructure deleteNode from the store
   const {
     nodes,
     edges,
@@ -53,7 +52,7 @@ export const PipelineUI = () => {
     onNodesChange,
     onEdgesChange,
     onConnect,
-    deleteNode, // Include deleteNode in destructuring
+    deleteNode,
   } = useStore(selector, shallow);
 
   const getInitNodeData = (nodeID, type) => {
@@ -100,11 +99,11 @@ export const PipelineUI = () => {
     event.dataTransfer.dropEffect = "move";
   }, []);
 
-  // Add debugging useEffect
+  /*
   useEffect(() => {
     console.log("Nodes updated:", nodes);
   }, [nodes]);
-
+  */
   const flowStyles = {
     background: "#f8f8f8",
   };
