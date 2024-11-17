@@ -3,7 +3,7 @@ import ReactFlow, { Controls, Background, MiniMap } from "reactflow";
 import { useStore } from "./store";
 import { shallow } from "zustand/shallow";
 import { InputNode } from "./nodes/inputNode";
-import { LLMNode } from "./nodes/llmNode";
+// import { LLMNode } from "./nodes/llmNode";
 import { OutputNode } from "./nodes/outputNode";
 import { TextNode } from "./nodes/textNode";
 import { AggregatorNode } from "./NewNodes/aggregatorNode";
@@ -18,7 +18,7 @@ const gridSize = 20;
 const proOptions = { hideAttribution: true };
 const nodeTypes = {
   customInput: InputNode,
-  llm: LLMNode,
+  // llm: LLMNode,
   customOutput: OutputNode,
   text: TextNode,
   aggregator: AggregatorNode,

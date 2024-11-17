@@ -37,14 +37,14 @@ export const PipelineToolbar = () => {
           }}
         >
           <DraggableNode type="customInput" label="Input" />
-          <DraggableNode type="llm" label="LLM" />
+          {/* <DraggableNode type="llm" label="LLM" /> */}
           <DraggableNode type="customOutput" label="Output" />
           <DraggableNode type="text" label="Text" />
-          <DraggableNode type="aggregator" label="AggregatorNode" />
-          <DraggableNode type="conditional" label="ConditionalNode" />
-          <DraggableNode type="math" label="MathNode" />
-          <DraggableNode type="imageProcessing" label="ImageProcessingNode" />
-          <DraggableNode type="delay" label="DelayNode" />
+          <DraggableNode type="aggregator" label="Aggregator" />
+          <DraggableNode type="conditional" label="Condition" />
+          <DraggableNode type="math" label="Math" />
+          <DraggableNode type="imageProcessing" label="Image Processing" />
+          <DraggableNode type="delay" label="Delay" />
         </div>
       )}
     </div>

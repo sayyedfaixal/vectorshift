@@ -37,10 +37,6 @@ def is_directed_acyclic_graph(nodes, edges):
         target = edge['target']
         adjacency_list[source].append(target)
 
-    print(' ================================================================= ')
-    print('AD IS',adjacency_list)
-    print(' ================================================================= ')
-
     # Now you can proceed with detecting cycles, for example using DFS
     def has_cycle(node, visited, rec_stack):
         visited[node] = True
